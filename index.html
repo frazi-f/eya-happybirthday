@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Private Access · Vintage Pink & Gold</title>
+  <style>
+    /* ---------- RESET & BASE (Mobile First) ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #0d1f12;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 182, 193, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(46, 204, 113, 0.05) 0%, transparent 60%),
+        repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.02) 0px, rgba(212, 175, 55, 0.02) 2px, transparent 2px, transparent 8px),
+        linear-gradient(145deg, #0b1a10 0%, #102516 40%, #0d1f12 100%);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      padding: 1rem;
+      position: relative;
+    }
+
+    /* vintage texture overlay - subtle grain */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 0.82 0 0 0 0 0.71 0 0 0 0 0.27 0 0 0 0.03 0"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.12"/></svg>');
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.5;
+    }
+
+    /* ---------- MOBILE-FIRST CARD ---------- */
+    .verification-card {
+      position: relative;
+      z-index: 10;
+      max-width: 100%;
+      width: 100%;
+      background: #0f0d0c;
+      background: linear-gradient(160deg, #12100e 0%, #1a1714 100%);
+      border-radius: 1.8rem;
+      border: 2px solid #d4af37;
+      box-shadow: 
+        0 0 0 1px rgba(212, 175, 55, 0.3),
+        0 0 20px rgba(212, 175, 55, 0.25),
+        0 0 40px rgba(46, 204, 113, 0.08),
+        0 20px 40px -12px rgba(0, 0, 0, 0.95),
+        inset 0 0 30px rgba(212, 175, 55, 0.06);
+      padding: 1.8rem 1.2rem 2.2rem;
+      transition: box-shadow 0.4s ease, transform 0.3s ease;
+      animation: cardGlow 5s infinite alternate;
+    }
+
+    @keyframes cardGlow {
+      0% { 
+        box-shadow: 
+          0 0 0 1px rgba(212, 175, 55, 0.25),
+          0 0 20px rgba(212, 175, 55, 0.15),
+          0 0 40px rgba(46, 204, 113, 0.05),
+          0 20px 40px -12px rgba(0,0,0,0.95),
+          inset 0 0 30px rgba(212, 175, 55, 0.04); 
+      }
+      100% { 
+        box-shadow: 
+          0 0 0 1px rgba(212, 175, 55, 0.45),
+          0 0 30px rgba(212, 175, 55, 0.3),
+          0 0 60px rgba(46, 204, 113, 0.12),
+          0 20px 40px -12px rgba(0,0,0,0.95),
+          inset 0 0 35px rgba(212, 175, 55, 0.08); 
+      }
+    }
+
+    /* corner ornaments - gold */
+    .corner-ornament {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-color: #d4af37;
+      opacity: 0.85;
+    }
+    .corner-tl {
+      top: 12px;
+      left: 12px;
+      border-top: 2.5px solid #d4af37;
+      border-left: 2.5px solid #d4af37;
+      border-radius: 10px 0 0 0;
+    }
+    .corner-tr {
+      top: 12px;
+      right: 12px;
+      border-top: 2.5px solid #d4af37;
+      border-right: 2.5px solid #d4af37;
+      border-radius: 0 10px 0 0;
+    }
+    .corner-bl {
+      bottom: 12px;
+      left: 12px;
+      border-bottom: 2.5px solid #d4af37;
+      border-left: 2.5px solid #d4af37;
+      border-radius: 0 0 0 10px;
+    }
+    .corner-br {
+      bottom: 12px;
+      right: 12px;
+      border-bottom: 2.5px solid #d4af37;
+      border-right: 2.5px solid #d4af37;
+      border-radius: 0 0 10px 0;
+    }
+
+    /* ---------- HEADER ---------- */
+    .ornament-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-bottom: 0.6rem;
+    }
+    .ornament-line .line {
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, #d4af37, #d4af37, transparent);
+    }
+    .ornament-line .star {
+      color: #ffb6c1;
+      font-size: 1rem;
+      letter-spacing: 5px;
+      text-shadow: 0 0 12px rgba(255, 182, 193, 0.8), 0 0 20px rgba(212, 175, 55, 0.4);
+      animation: twinkle 3s infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { opacity: 0.7; text-shadow: 0 0 6px #ffb6c1; }
+      100% { opacity: 1; text-shadow: 0 0 18px #ffb6c1, 0 0 28px #d4af37; }
+    }
+
+    h1 {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-weight: 400;
+      font-size: 2rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      text-align: center;
+      color: #ffb6c1;
+      text-shadow: 0 0 20px rgba(255, 182, 193, 0.7), 0 0 40px rgba(212, 175, 55, 0.3), 0 2px 4px #000;
+      margin: 0.2rem 0 0.2rem;
+      word-break: break-word;
+    }
+    h1 span {
+      color: #ffd1dc;
+      font-style: italic;
+      text-transform: lowercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 15px rgba(255, 209, 220, 0.8);
+    }
+
+    .subtitle {
+      text-align: center;
+      font-family: 'Arial', 'Helvetica', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #c9a9b0;
+      margin: 0.4rem 0 1.6rem;
+      font-weight: 300;
+      border-bottom: 1px dashed rgba(212, 175, 55, 0.4);
+      padding-bottom: 0.8rem;
+      transition: color 0.3s;
+      line-height: 1.5;
+    }
+
+    /* ---------- FORM ---------- */
+    .verification-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .input-group label {
+      font-family: 'Arial', 'Helvetica', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #d4af37;
+      font-weight: 600;
+      padding-left: 0.5rem;
+      transition: color 0.3s;
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+    }
+
+    .input-group input {
+      background: rgba(20, 18, 15, 0.95);
+      border: 1.5px solid #d4af37;
+      border-radius: 50px;
+      padding: 0.9rem 1.3rem;
+      font-family: 'Arial', 'Helvetica', sans-serif;
+      font-size: 0.95rem;
+      color: #ffe4e9;
+      outline: none;
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
+      box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(212, 175, 55, 0.25);
+    }
+
+    .input-group input::placeholder {
+      color: #8a7a6a;
+      font-style: italic;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .input-group input:focus {
+      border-color: #ffb6c1;
+      box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.3), 0 0 20px rgba(212, 175, 55, 0.3), inset 0 4px 10px #000;
+      background: #1a1713;
+    }
+
+    /* validation states */
+    .input-group.correct input {
+      border-color: #2ecc71;
+      box-shadow: 0 0 0 2.5px rgba(46, 204, 113, 0.35), 0 0 20px rgba(46, 204, 113, 0.2), inset 0 4px 10px rgba(0,0,0,0.8);
+      background: #0f1a10;
+    }
+    .input-group.incorrect input {
+      border-color: #e74c3c;
+      box-shadow: 0 0 0 2.5px rgba(231, 76, 60, 0.4), 0 0 20px rgba(231, 76, 60, 0.2), inset 0 4px 10px rgba(0,0,0,0.8);
+      background: #1a1010;
+    }
+
+    .input-group.correct label {
+      color: #2ecc71;
+    }
+    .input-group.incorrect label {
+      color: #e74c3c;
+    }
+
+    /* small feedback message per field */
+    .field-feedback {
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      padding-left: 1rem;
+      min-height: 1rem;
+      font-family: 'Arial', sans-serif;
+      color: #b8a28b;
+      transition: color 0.3s;
+    }
+
+    /* ---------- BUTTON & MESSAGES ---------- */
+    .verify-btn {
+      background: linear-gradient(135deg, #d4af37 0%, #b8962e 100%);
+      border: 2px solid #ffd1dc;
+      border-radius: 50px;
+      padding: 1rem 1.5rem;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.1rem;
+      font-weight: bold;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #1a0e12;
+      cursor: pointer;
+      margin-top: 0.3rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 25px rgba(212, 175, 55, 0.4), 0 0 50px rgba(46, 204, 113, 0.1);
+      position: relative;
+      overflow: hidden;
+      text-shadow: 0 1px 1px rgba(255, 209, 220, 0.5);
+    }
+
+    .verify-btn:hover {
+      background: linear-gradient(135deg, #e9c84a 0%, #d4af37 100%);
+      box-shadow: 0 0 35px rgba(212, 175, 55, 0.8), 0 0 60px rgba(46, 204, 113, 0.2), 0 8px 20px #000;
+      transform: scale(1.02);
+      letter-spacing: 5px;
+      border-color: #ffb6c1;
+    }
+
+    .verify-btn:active {
+      transform: scale(0.98);
+    }
+
+    .verify-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    }
+
+    .error-message {
+      color: #ffb6c1;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      text-align: center;
+      letter-spacing: 1.5px;
+      margin-top: 0.3rem;
+      min-height: 1.3rem;
+      transition: opacity 0.3s;
+      text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+    }
+
+    .success-message {
+      color: #2ecc71;
+      font-family: 'Georgia', serif;
+      font-size: 1rem;
+      text-align: center;
+      letter-spacing: 3px;
+      margin-top: 0.3rem;
+      min-height: 1.3rem;
+      text-shadow: 0 0 20px rgba(46, 204, 113, 0.8);
+      animation: successPulse 1s infinite alternate;
+    }
+
+    @keyframes successPulse {
+      from { opacity: 0.8; text-shadow: 0 0 6px #2ecc71; }
+      to { opacity: 1; text-shadow: 0 0 30px #2ecc71, 0 0 45px #1f8b4c; }
+    }
+
+    /* shake animation for card on error */
+    .shake {
+      animation: shakeCard 0.4s ease-in-out;
+    }
+    @keyframes shakeCard {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      50% { transform: translateX(8px); }
+      75% { transform: translateX(-4px); }
+      100% { transform: translateX(0); }
+    }
+
+    /* field check animation */
+    .check-flash {
+      animation: flashField 0.5s ease;
+    }
+    @keyframes flashField {
+      0% { background: rgba(46, 204, 113, 0.3); }
+      100% { background: transparent; }
+    }
+
+    /* success overlay effect */
+    .success-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 100;
+      animation: successGlow 1.5s forwards;
+    }
+    @keyframes successGlow {
+      0% { opacity: 0; }
+      30% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* ---------- RESPONSIVE: upscale for tablet/desktop ---------- */
+    @media (min-width: 480px) {
+      .verification-card {
+        max-width: 440px;
+        padding: 2.2rem 1.8rem 2.6rem;
+        border-radius: 2.2rem;
+      }
+      h1 {
+        font-size: 2.4rem;
+        letter-spacing: 6px;
+      }
+      .subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 2.5px;
+      }
+      .input-group label {
+        font-size: 0.7rem;
+      }
+      .input-group input {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+      }
+      .verify-btn {
+        font-size: 1.2rem;
+        padding: 1.1rem 2rem;
+      }
+      .corner-ornament {
+        width: 26px;
+        height: 26px;
+      }
+      .corner-tl { top: 16px; left: 16px; }
+      .corner-tr { top: 16px; right: 16px; }
+      .corner-bl { bottom: 16px; left: 16px; }
+      .corner-br { bottom: 16px; right: 16px; }
+    }
+
+    @media (min-width: 768px) {
+      .verification-card {
+        max-width: 500px;
+        padding: 2.5rem 2.2rem 3rem;
+        border-radius: 2.5rem;
+        border-width: 2.5px;
+      }
+      h1 {
+        font-size: 2.8rem;
+        letter-spacing: 7px;
+      }
+      .subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+      }
+      .input-group label {
+        font-size: 0.75rem;
+        letter-spacing: 4px;
+      }
+      .input-group input {
+        padding: 1.1rem 1.8rem;
+        font-size: 1.1rem;
+      }
+      .verify-btn {
+        font-size: 1.3rem;
+        padding: 1.2rem 2.2rem;
+        letter-spacing: 5px;
+      }
+      .field-feedback {
+        font-size: 0.75rem;
+      }
+      .error-message {
+        font-size: 0.9rem;
+      }
+      .success-message {
+        font-size: 1.15rem;
+      }
+      .corner-ornament {
+        width: 32px;
+        height: 32px;
+      }
+      .corner-tl { top: 20px; left: 20px; }
+      .corner-tr { top: 20px; right: 20px; }
+      .corner-bl { bottom: 20px; left: 20px; }
+      .corner-br { bottom: 20px; right: 20px; }
+    }
+
+    @media (min-width: 1024px) {
+      .verification-card {
+        max-width: 550px;
+        padding: 2.8rem 2.5rem 3.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="verification-card" id="card">
+    <!-- corner ornaments -->
+    <div class="corner-ornament corner-tl"></div>
+    <div class="corner-ornament corner-tr"></div>
+    <div class="corner-ornament corner-bl"></div>
+    <div class="corner-ornament corner-br"></div>
+
+    <div class="ornament-line">
+      <span class="line"></span>
+      <span class="star">✦ ✦ ✦</span>
+      <span class="line"></span>
+    </div>
+
+    <h1>Private <span>Access</span></h1>
+
+    <div class="subtitle">to make sure this webpage is accessed to the right person please fill the requirements and then you will have your main celebration page</div>
+
+    <form class="verification-form" id="verificationForm" novalidate>
+      <!-- NAME -->
+      <div class="input-group" id="groupName">
+        <label for="nameInput">Your Name</label>
+        <input type="text" id="nameInput" name="name" placeholder="enter your name" autocomplete="off" spellcheck="false">
+        <div class="field-feedback" id="feedbackName"></div>
+      </div>
+
+      <!-- PHONE -->
+      <div class="input-group" id="groupPhone">
+        <label for="phoneInput">Phone Number</label>
+        <input type="tel" id="phoneInput" name="phone" placeholder="your phone number" autocomplete="off">
+        <div class="field-feedback" id="feedbackPhone"></div>
+      </div>
+
+      <!-- PASSCODE -->
+      <div class="input-group" id="groupPass">
+        <label for="passInput">Passcode</label>
+        <input type="password" id="passInput" name="passcode" placeholder="••••" autocomplete="off">
+        <div class="field-feedback" id="feedbackPass"></div>
+      </div>
+
+      <button type="submit" class="verify-btn" id="verifyBtn">Enter</button>
+
+      <div class="error-message" id="errorMessage"></div>
+      <div class="success-message" id="successMessage"></div>
+    </form>
+
+    <div class="ornament-line" style="margin-top: 1.2rem; margin-bottom: 0;">
+      <span class="line"></span>
+      <span class="star" style="font-size: 0.7rem; letter-spacing: 3px;">✧ ✧ ✧</span>
+      <span class="line"></span>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ---------- CONFIG ----------
+      const VALID_NAMES = ['name-1', 'eya', 'eyaa', 'eyael', 'eyael teferi', 'eyaelteferi'];
+      const VALID_PHONES = ['0979024251', '+251979024251', '979024251'];
+      const VALID_PASSCODES = ['2803', '0328', '0238', '7777'];
+      const REDIRECT_URL = 'https://frazi-f.github.io/kjh/';
+
+      // DOM elements
+      const form = document.getElementById('verificationForm');
+      const nameInput = document.getElementById('nameInput');
+      const phoneInput = document.getElementById('phoneInput');
+      const passInput = document.getElementById('passInput');
+      const groupName = document.getElementById('groupName');
+      const groupPhone = document.getElementById('groupPhone');
+      const groupPass = document.getElementById('groupPass');
+      const feedbackName = document.getElementById('feedbackName');
+      const feedbackPhone = document.getElementById('feedbackPhone');
+      const feedbackPass = document.getElementById('feedbackPass');
+      const errorMessage = document.getElementById('errorMessage');
+      const successMessage = document.getElementById('successMessage');
+      const card = document.getElementById('card');
+      const verifyBtn = document.getElementById('verifyBtn');
+
+      // ---------- HELPERS ----------
+      function normalizeName(str) {
+        return str.trim().toLowerCase().replace(/\s+/g, ' ');
+      }
+
+      function normalizePhone(str) {
+        return str.trim().replace(/\s+/g, '');
+      }
+
+      function normalizePass(str) {
+        return str.trim();
+      }
+
+      function isNameValid(value) {
+        const normalized = normalizeName(value);
+        return VALID_NAMES.includes(normalized);
+      }
+
+      function isPhoneValid(value) {
+        const normalized = normalizePhone(value);
+        return VALID_PHONES.includes(normalized);
+      }
+
+      function isPassValid(value) {
+        const normalized = normalizePass(value);
+        return VALID_PASSCODES.includes(normalized);
+      }
+
+      function setFieldState(group, feedbackEl, isValid, showFeedback = true) {
+        group.classList.remove('correct', 'incorrect');
+        if (isValid) {
+          group.classList.add('correct');
+          if (showFeedback) feedbackEl.textContent = '✓';
+          feedbackEl.style.color = '#2ecc71';
+        } else {
+          const input = group.querySelector('input');
+          if (input.value.trim() !== '' || showFeedback) {
+            group.classList.add('incorrect');
+            if (showFeedback) feedbackEl.textContent = '✗';
+            feedbackEl.style.color = '#e74c3c';
+          } else {
+            feedbackEl.textContent = '';
+          }
+        }
+      }
+
+      function clearAllStates() {
+        [groupName, groupPhone, groupPass].forEach(g => g.classList.remove('correct', 'incorrect'));
+        [feedbackName, feedbackPhone, feedbackPass].forEach(f => { f.textContent = ''; });
+        errorMessage.textContent = '';
+      }
+
+      function checkAllFields(showFeedback = true) {
+        const nameVal = nameInput.value;
+        const phoneVal = phoneInput.value;
+        const passVal = passInput.value;
+
+        const nameOk = isNameValid(nameVal);
+        const phoneOk = isPhoneValid(phoneVal);
+        const passOk = isPassValid(passVal);
+
+        setFieldState(groupName, feedbackName, nameOk, showFeedback);
+        setFieldState(groupPhone, feedbackPhone, phoneOk, showFeedback);
+        setFieldState(groupPass, feedbackPass, passOk, showFeedback);
+
+        return nameOk && phoneOk && passOk;
+      }
+
+      // ---------- EVENT LISTENERS (live validation) ----------
+      nameInput.addEventListener('input', function() {
+        const val = nameInput.value;
+        const normalized = normalizeName(val);
+        if (normalized === '') {
+          groupName.classList.remove('correct', 'incorrect');
+          feedbackName.textContent = '';
+          return;
+        }
+        const valid = VALID_NAMES.includes(normalized);
+        setFieldState(groupName, feedbackName, valid, true);
+        errorMessage.textContent = '';
+      });
+
+      phoneInput.addEventListener('input', function() {
+        const val = phoneInput.value;
+        const normalized = normalizePhone(val);
+        if (normalized === '') {
+          groupPhone.classList.remove('correct', 'incorrect');
+          feedbackPhone.textContent = '';
+          return;
+        }
+        const valid = VALID_PHONES.includes(normalized);
+        setFieldState(groupPhone, feedbackPhone, valid, true);
+        errorMessage.textContent = '';
+      });
+
+      passInput.addEventListener('input', function() {
+        const val = passInput.value;
+        const normalized = normalizePass(val);
+        if (normalized === '') {
+          groupPass.classList.remove('correct', 'incorrect');
+          feedbackPass.textContent = '';
+          return;
+        }
+        const valid = VALID_PASSCODES.includes(normalized);
+        setFieldState(groupPass, feedbackPass, valid, true);
+        errorMessage.textContent = '';
+      });
+
+      function flashFields() {
+        [nameInput, phoneInput, passInput].forEach(inp => {
+          inp.classList.add('check-flash');
+          setTimeout(() => inp.classList.remove('check-flash'), 500);
+        });
+      }
+
+      // ---------- SUBMIT ----------
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        successMessage.textContent = '';
+        errorMessage.textContent = '';
+
+        const allValid = checkAllFields(true);
+        flashFields();
+
+        if (allValid) {
+          successMessage.textContent = '✓ ACCESS GRANTED ✓';
+          verifyBtn.disabled = true;
+
+          const overlay = document.createElement('div');
+          overlay.className = 'success-overlay';
+          document.body.appendChild(overlay);
+          setTimeout(() => overlay.remove(), 1500);
+
+          card.style.transition = 'box-shadow 0.5s, transform 0.3s';
+          card.style.boxShadow = '0 0 80px rgba(212, 175, 55, 0.9), 0 0 0 3px #ffb6c1, 0 0 120px rgba(46, 204, 113, 0.3)';
+          card.style.transform = 'scale(1.02)';
+
+          setTimeout(function() {
+            window.location.href = REDIRECT_URL;
+          }, 1200);
+        } else {
+          errorMessage.textContent = '✗ Verification failed. Please check your answers.';
+          card.classList.add('shake');
+          setTimeout(() => card.classList.remove('shake'), 500);
+          verifyBtn.disabled = false;
+        }
+      });
+
+      // Allow Enter key to submit
+      [nameInput, phoneInput, passInput].forEach(input => {
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            form.dispatchEvent(new Event('submit', { cancelable: true }));
+          }
+        });
+      });
+
+      // On load, ensure clean state
+      window.addEventListener('load', function() {
+        [groupName, groupPhone, groupPass].forEach(g => g.classList.remove('correct', 'incorrect'));
+        [feedbackName, feedbackPhone, feedbackPass].forEach(f => f.textContent = '');
+      });
+
+    })();
+  </script>
+</body>
+</html>
